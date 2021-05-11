@@ -1,0 +1,45 @@
+.button {
+    background-color: rgb(54, 97, 146);
+    width: 100px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 7px;
+    user-select: none;
+}
+.button:hover {
+    background-color: rgb(30, 71, 117);
+    width: 100px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 7px;
+    /* pointer-events: painted; */
+}
+
+.button:active {
+    background-color: rgb(40, 85, 136);
+    width: 100px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(167, 65, 65);
+    border-radius: 7px;
+}
+
+.disabled {
+    background-color: rgb(73, 104, 139);
+    width: 100px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(158, 158, 158);
+    border-radius: 7px;
+    user-select: none;
+}
