@@ -1,11 +1,13 @@
 import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 import React, { ChangeEvent } from 'react';
+import { isPropertyDeclaration } from 'typescript';
 import { Button } from '../Button/Button';
 import s from './DisplayWindow.module.css';
 
 type DisplayWindowPropsType = {
     counter?: number
     topCount?: number
+    startCount?: number
     incFunction?: () => void
     resetFunction?: () => void
     setFunction?: () => void
@@ -28,7 +30,7 @@ export function DisplayWindow(props: DisplayWindowPropsType) {
 
 
     let resetDisabled: boolean = false
-    if(props.counter === 0){
+    if(props.counter === props.startCount){
         resetDisabled = true
     }  
     

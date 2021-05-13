@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { DisplayWindow } from './Components/DisplayWindow/DisplayWindow';
+import { networkInterfaces } from 'os';
 
 function App() {
   
@@ -12,7 +13,6 @@ function App() {
     setStartCount(newStartCountValue)
     localStorage.setItem('topValue', JSON.stringify(newTopCountValue))
     localStorage.setItem('startValue', JSON.stringify(newStartCountValue))
-    
   }
 
   let [topInputValue, setTopInputValue] = useState<number>(0) // Value for Top Input
@@ -25,14 +25,24 @@ function App() {
   
 
   useEffect(() => {
-    let getFromLocalStorage = 0
-    let stringFromLocalStorage  = localStorage.getItem('topValue')
-     if(stringFromLocalStorage)
+    let maxValueFromLocalStorage = 0
+    let startValueFromLocalStorage = 0
+    let maxStringFromLocalStorage  = localStorage.getItem('topValue')
+     if(maxStringFromLocalStorage)
     {
-      getFromLocalStorage = JSON.parse(stringFromLocalStorage)
+      maxValueFromLocalStorage = JSON.parse(maxStringFromLocalStorage)
     }
-    setTopInputValue(getFromLocalStorage)
-    setTopCount(getFromLocalStorage)
+
+    let startStringFromLocalStorage = localStorage.getItem('startValue')
+    if(startStringFromLocalStorage){
+      startValueFromLocalStorage = JSON.parse(startStringFromLocalStorage)
+    }
+
+    setStartInputValue(startValueFromLocalStorage)
+    setStartCount(startValueFromLocalStorage)
+    setTopInputValue(maxValueFromLocalStorage)
+    setTopCount(maxValueFromLocalStorage)
+    setCount(startCount)
 }, [topCount])
 
   // Function to Set Top Value in settings window
@@ -40,7 +50,7 @@ function App() {
     if(newValue >= 0) {
       setTopInputValue(newValue)
     }
-    if(newValue < startInputValue){
+    if(newValue < startInputValue && newValue >= 0){
       setStartInputValue(newValue)
     }
     
@@ -85,7 +95,8 @@ function App() {
                        counter={counter} 
                        incFunction={incrementFunc} 
                        resetFunction={resetCounter}
-                       topCount={topCount}/>
+                       topCount={topCount}
+                       startCount={startCount}/>
       </div>
       
 
